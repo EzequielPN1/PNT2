@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+
+</head>
+<body>
+    
+</body>
+
+<script>
+//2-Objeto declaracion:
+const objeto={propiedadUno:1,propiedadDos:"valor"}
+
+//3-Acceso a propiedades del objeto: Notacion de puntos
+console.log(objeto.propiedadUno)
+
+//4-Acceso a propiedades del objeto: Notación corchetes
+console.log(objeto["propiedadDos"])
+
+
+//5-Acceso a propiedades con variables
+
+const nombreVariable = "propiedadUno"
+console.log(objeto[nombreVariable]);
+
+//6-Agregar Propiedad a un objeto
+
+objeto.propiedadTres="otro Valor"
+console.log(objeto["propiedadTres"]);
+
+//También es posible elimiar una propiedad, ejemplo delete persona.edad
+objeto.propiedadCuatro="valor propiedad cuatro"
+console.log(objeto.propiedadCuatro)
+
+delete objeto.propiedadCuatro
+console.log(objeto.propiedadCuatro)//undefinded porque no existe
+
+
+//-9 Objetos Complejos: pueden tener arrays y otros objetos como propiedades
+
+objeto.propiedadCuatro=["Tarea1","Tarea2","Tarea3"]
+
+objeto.propiedadCuatro.forEach(element => {
+    console.log(element)
+});
+
+//10-También es posible que tengan una función, solo al declarar el objeto
+
+const objetoDos ={tareas:["Tarea1","Tarea2","Tarea3"],cantidadTareas(){return this.tareas.length}}
+
+console.log(objetoDos.cantidadTareas())
+
+
+
+//13-Funciones Anónimas: Una función anónima es una función sin nombre
+
+//https://estradawebgroup.com/Post/Que-son-las-funciones-anonimas-de-JavaScript-/20587#:~:text=Por%20ejemplo%2C%20lo%20siguiente%20muestra,function%20y%20los%20par%C3%A9ntesis%20()%20.
+
+
+
+// Funciones Flecha (arrow function)
+
+const nombres = []
+
+const funcionFlecha= (nombre)=>nombres.push(nombre)
+
+funcionFlecha("Pedro")
+funcionFlecha("Marcelo")
+
+nombres.forEach(element => {
+    console.log(element)
+});
+
+
+
+  
+
+
+</script>
+
+</html>
