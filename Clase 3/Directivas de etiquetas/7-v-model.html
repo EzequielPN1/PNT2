@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<div id="app">
+
+
+<table>
+
+ <tr>  <td>Nombre</td>  <td>Edad</td>  <td>Pais</td>    </tr>
+ <tr v-for="item in listaPersona">  
+    <td >{{item.nombre}}</td>    
+    <td >{{item.edad}}</td>  
+    <td >{{item.pais}}</td>   
+</tr>
+
+</table>
+
+<button v-on:click="agregarPersona">Agregar Persona</button>
+<input v-model="nombre">
+<input v-model="edad">
+<input v-model="pais">
+
+  
+  
+</div>
+
+
+<script>
+const {createApp}=Vue
+createApp({
+
+data(){
+    return{
+
+       
+    listaPersona:[{nombre:'Juan',edad:23,pais:'Argentina'},{nombre:'Marcelo',edad:35,pais:'Venezuela'},{nombre:'Sebastian',edad:50,pais:'chile'}],
+
+     nombre:'',
+     edad:0,
+     pais:''
+
+
+    }
+},
+methods: {
+    agregarPersona(){
+       let persona= {
+          nombre:this.nombre,
+          edad:this.edad,
+          pais:this.pais
+       }
+        this.listaPersona.push(persona)
+    }
+},
+
+
+}).mount('#app')
+</script>
+
+
+
+</body>
+</html>

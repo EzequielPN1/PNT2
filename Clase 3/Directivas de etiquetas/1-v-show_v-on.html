@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<div id="app">
+
+
+    <button v-on:click="activar">Tiulo ON</button>
+    <button v-on:click="desactivar">Tiulo OFF</button>
+      
+    <h1 v-show="mostrar">{{titulo}}</h1>
+ 
+
+</div>
+
+
+
+<script>
+const {createApp}=Vue
+createApp({
+
+data(){
+    return{
+        titulo:'Titulo',
+        mostrar:true,
+    }
+},
+methods: {
+    
+   activar(){
+    this.mostrar=true
+   },
+
+   desactivar(){
+   this.mostrar=false
+   }
+
+},
+
+}).mount('#app')
+</script>
+
+</body>
+</html>

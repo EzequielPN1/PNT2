@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<div id="app">
+
+
+<table>
+
+ <tr>  <td>Nombre</td>  <td>Edad</td>      </tr>
+ <tr v-for="item in listaPersonas">  <td>{{item.nombre}}</td>     <td>{{item.edad}}</td>     </tr>
+    
+</table>
+
+  
+  
+</div>
+
+
+<script>
+const {createApp}=Vue
+createApp({
+
+data(){
+    return{
+       
+        listaPersonas:[{nombre:'Juan',edad:23},{nombre:'Marcelo',edad:35},{nombre:'Sebastian',edad:50}]
+
+    }
+}
+
+
+}).mount('#app')
+</script>
+
+
+
+</body>
+</html>

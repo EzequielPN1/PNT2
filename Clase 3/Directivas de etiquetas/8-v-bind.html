@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<div id="app">
+
+   <li v-for="item in listaDeLinks"> <a  v-bind:href="item.url">   {{item.nombre}}   </a>  </li>
+  
+</div>
+
+
+<script>
+const {createApp}=Vue
+createApp({
+
+data(){
+    return{
+
+       listaDeLinks:[{nombre:'youtube',url:'https://www.youtube.com/'},{nombre:'google',url:'https://www.google.com.ar/'},{nombre:'infobae',url:'https://www.infobae.com/'}]
+
+
+        
+    
+    }
+}
+
+
+
+
+}).mount('#app')
+</script>
+
+
+
+</body>
+</html>

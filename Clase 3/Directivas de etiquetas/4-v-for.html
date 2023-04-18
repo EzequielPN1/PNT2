@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<div id="app">
+
+    <li v-for="item in listaNombres">{{item}}</li>
+  
+  
+</div>
+
+
+<script>
+const {createApp}=Vue
+createApp({
+
+data(){
+    return{
+       
+    listaNombres:['Juan','Pedro','Marcelo']
+
+    }
+}
+
+
+}).mount('#app')
+</script>
+
+
+
+</body>
+</html>
