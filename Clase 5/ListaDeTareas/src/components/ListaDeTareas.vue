@@ -1,6 +1,6 @@
 <template>
     
-     <li v-for="item in listaDeTareas">nro: {{item.num + " " + item.nombre }} <td v-if="item.completada">completa</td></li>
+     <li v-for="item in listaDeTareas">nro: {{item.num + " " + item.nombre + "-"}} <a v-if="item.completada">Ok</a> <a v-if="!item.completada">Pendiente</a></li>
     
      <br>
      <br>
