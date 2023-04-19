@@ -51,23 +51,36 @@ objeto.propiedadCuatro.forEach(element => {
 
 //10-También es posible que tengan una función, solo al declarar el objeto
 
-const objetoDos ={tareas:["Tarea1","Tarea2","Tarea3"],cantidadTareas(){return this.tareas.length}}
+const objetoDos = {tareas:["Tarea1","Tarea2","Tarea3"],cantidadTareas(){return this.tareas.length}}
 
 console.log(objetoDos.cantidadTareas())
 
 
 
-//13-Funciones Anónimas: Una función anónima es una función sin nombre
+//13- Funciones Anónimas y funciones Flecha (arrow function):
 
-//https://estradawebgroup.com/Post/Que-son-las-funciones-anonimas-de-JavaScript-/20587#:~:text=Por%20ejemplo%2C%20lo%20siguiente%20muestra,function%20y%20los%20par%C3%A9ntesis%20()%20.
+//Funciones Anónimas: Una función anónima es una función sin nombre,deben ser asignadas a una variable
+// si se van a reutilizar
 
+let show = function() {
+    console.log('Soy una función anónima');
+};
+
+show();
 
 
 // Funciones Flecha (arrow function)
 
+ show = () => console.log('Soy una función anónima reedeclarada'); // reedeclaro la funcion anonima acortando con el arrow 
+
+show()
+
+
+//otro ejemplo de funcion flecha:
+
 const nombres = []
 
-const funcionFlecha= (nombre)=>nombres.push(nombre)
+const funcionFlecha = (nombre)=> nombres.push(nombre)
 
 funcionFlecha("Pedro")
 funcionFlecha("Marcelo")
@@ -78,7 +91,36 @@ nombres.forEach(element => {
 
 
 
-  
+//-14 Palabra reservada Class
+
+
+class Saludo {
+constructor(alguien){
+this.alguien = alguien;
+}
+fSaludar = () => console.log(this.alguien);
+}
+const saludo = new Saludo("Pedro");
+saludo.fSaludar();
+
+const fSaludo = (alguien) => {this.alguien = alguien; return this.alguien; }
+console.log(fSaludo("Juan"));
+
+
+//Encapsulamiento de las propiedades de una clase. Get and Set
+
+class Libro {
+#autor
+constructor(autor) {
+this.#autor = autor;
+}
+get getAutor() { return this.#autor; }
+set setAutor(nombre) { this.#autor = nombre;}
+}
+const libro = new Libro("Cervantes");
+console.log(libro.getAutor);
+libro.setAutor = "Borges";
+console.log(libro.getAutor);
 
 
 </script>
