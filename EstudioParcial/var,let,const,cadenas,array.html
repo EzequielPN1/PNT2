@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+
+var saludar // si no esta definida por defecto se declara undefined
+
+console.log(saludar) 
+
+
+var saludar = "inicie variable";  //variable global
+
+    var tester = "hey, hola";
+    
+    function nuevaFuncion() {
+        var hola = "hola";
+        var saludar = "redeclare la variable"; //variable local pero declarada de manera global
+    }
+    //console.log(hola); // error: hola is not defined
+    console.log(saludar) //el problema de var es que se puede redefinir en cualkier lugar
+
+</script>
