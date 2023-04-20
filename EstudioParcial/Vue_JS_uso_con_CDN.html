@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">
+
+    <p>{{titulo}}</p>
+  
+<button v-on:click="cambiarEstado" >Boton</button>
+
+<p v-if="condicional" >{{mensaje}} {{mostrarEstado + condicional}}</p> 
+
+<p v-else="condicional">{{mensajeDos}} {{mostrarEstado + condicional}}</p>
+
+<p v-show="condicional">{{mensajeTres}} {{mostrarEstado + condicional}}</p>
+
+<li v-for="elemento in productos">{{elemento.nombre +" $ "+ elemento.precio}}</li>
+
+<br>
+
+<input v-model="nombre" placeholder="nombre" > <input v-model="precio" > <button v-on:click="agregarProducto" >agregar</button>
+
+<button v-on:click="eliminarUltimo" >Eliminar Ultimo</button>
+
+<p>Eliminados</p>
+<li v-for="elemento in productosEliminados">{{elemento.nombre }}</li>
+
+
+</div>
+
+
+<script>
+
+const { createApp } = Vue
+createApp({
+data() {
+return {
+titulo:"Titulo",
+mensaje: "v-if activo",
+mensajeDos:"v-else activo",
+mensajeTres:"v-show activo",
+condicional:true,
+mostrarEstado: "- estado del condicional: ",
+
+productos: [{nombre:"Jarron",precio:200},
+            {nombre:"silla",precio:300},
+            {nombre:"mesa",precio:1000}],
+
+nombre:"",
+precio:0,
+
+productosEliminados:[]
+
+//Deteccion de cambios en Array
+
+//push() : asigna un valor al final del array a un nuevo índice (metodo agregarProducto)
+
+//pop() :
+
+
+}
+
+
+
+},
+methods: {
+
+    cambiarEstado(){
+        if(this.condicional){
+            this.condicional=false
+        }else{
+            this.condicional=true
+        }
+    },
+
+    agregarProducto(){
+     this.productos.push({nombre:this.nombre,precio:this.precio})
+    },
+
+    eliminarUltimo(){
+      this.productosEliminados.push(this.productos.pop())
+    }
+    
+},
+
+
+}).mount('#app')
+</script>
+
+</body>
+</html>
