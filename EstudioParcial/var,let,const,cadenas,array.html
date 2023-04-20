@@ -13,20 +13,81 @@
 
 <script>
 
+//-Variables Var:     
+
 var saludar // si no esta definida por defecto se declara undefined
 
-console.log(saludar) 
+console.log("la variable no se declaro y es por default es  :" + saludar) 
 
 
-var saludar = "inicie variable";  //variable global
+var nombre = "carlos"
+var nombre = "Matias" // las variables var se pueden reedeclarar 
 
-    var tester = "hey, hola";
-    
-    function nuevaFuncion() {
-        var hola = "hola";
-        var saludar = "redeclare la variable"; //variable local pero declarada de manera global
+
+function decirNombre(){
+    var nombre = "Pedro" // reedeclarada de manera local
+    console.log("variable var reedeclarada de manera local " + nombre)
+}
+
+decirNombre() // las variables var si se modifican de manera local, tambien se modifican de manera global
+
+
+
+
+//-Variables Let:
+
+let dia = "Lunes"
+
+dia = "Martes" //let puede modificarse pero no volver a declararse.
+
+
+
+let saludarLet = "dice Hola"; // variable global
+
+
+    if (true) {
+        let saludarLet = "dice Hola tambien";  // variable local 
+        console.log("variable let local " + saludarLet); // "dice Hola tambien"
     }
-    //console.log(hola); // error: hola is not defined
-    console.log(saludar) //el problema de var es que se puede redefinir en cualkier lugar
+
+    console.log("variable let global " + saludarLet); // "dice Hola"
+
+//Esto se debe a que ambas instancias son tratadas como variables diferentes, ya que tienen ámbitos diferentes.
+
+
+
+
+//-Constantes: al igual q las let solo pueden ser accesidadas en el bloque que fueron declaradas,
+//y no puede modificarse ni volver a declararse
+
+const calle = "Olazabal"
+
+//calle ="donado" // no se puede hacer
+
+
+
+
+
+//-Cadenas :  Las cadenas son inmutables no se puden cambiar los elementos que la componen
+
+let cadena ="Carlos"
+cadena[0]="S"
+console.log(cadena[0]) // sigue siendo C
+
+
+
+
+//- Arreglos : Los arrays pueden contener cualquier tipo de datos
+
+const array = ['Juan',32,true]  // asignar el array a una const evita que se cambie el array por otro tipo de variable
+
+console.log(array)
+
+console.log(array[0])
+console.log(array[1])
+console.log(array[2])
+
+
+
 
 </script>
