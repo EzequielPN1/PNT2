@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+
+//-Recorrer una lista con Foreach
+
+const lista = [1,2,3,4,5]
+
+lista.forEach(element => {
+   // console.log(element)
+});
+
+//usando arrow
+
+lista.forEach(numero => console.log(numero))
+
+//-Recorrer un lista de objetos usando Foreach
+
+const productos = [{id:1,nombre:'Tornillo'},{id:2,nombre:'Martillo'},{id:2,nombre:'Pinza'}]
+
+productos.forEach(producto => console.log(producto.nombre))
+
+
+
+//-Metodo Map :El método map() crea un nuevo array con los resultados de la llamada a la función indicada aplicados
+//a cada uno de sus elementos.
+//Sirve para evitar mutar el array original, evitando realizar lo siguiente:
+
+const precios = [100,500,600,800]
+
+const descuento = 10
+
+const preciosConDescuento = precios.map(elemento => elemento - descuento) // Genera una nueva lista con la funcion que queramos
+
+console.log("Precios con descuentos: " + preciosConDescuento)
+
+
+//-Map con lista de Objetos: 
+
+ const personas = [{nombre:"Juan",edad:30},{nombre:"Ana",edad:28}]
+
+ console.log(personas)
+
+
+ const personasMasDosAnios = personas.map(persona => {return {nombre:persona.nombre,edad:persona.edad+2}})
+
+console.log(personasMasDosAnios)
+
+
+
+
+
+//-Metodo  Filter : El método filter() crea un nuevo array con todos los elementos que cumplan la
+//condición implementada por la función dada.
+
+const numeros = [23,12,2,5,34,8,10,4]
+
+const numerosMayores = numeros.filter(numero => numero > 10)
+
+console.log(numerosMayores)
+
+//Filter con lista de Objetos:
+
+const clientes = [{nombre:"Pedro",gasto:1000,pago:true},{nombre:"Juan",gasto:500,pago:false},{nombre:"Marcelo",gasto:2500,pago:false},{nombre:"Sebastian",gasto:300,pago:false}]
+
+const clientesImpagos = clientes.filter(cliente => cliente.pago == false && cliente.gasto > 400)
+
+console.log(clientesImpagos)
+
+
+
+
+//-Reduce: 
+
+const ListaNumeros = [3,12,34,12,17,25];
+const rta = ListaNumeros.reduce((a,c) => a + c, 0);
+console.log(rta);
+
+//Con objetos:
+
+const items = [{nombre:"Arroz",precio:5},
+               {nombre:"Libro",precio:20},
+               {nombre:"Pollo",precio:10},
+               {nombre:"Monitor",precio:100}
+]
+
+const precioTotal = items.reduce((a,c) => {return a + c.precio},0)
+
+console.log(precioTotal)
+
+
+//-Metodo Sort : Para ordenar una lista, usamos el método sort, que ordena la misma lista (mutación)
+
+
+
+
+</script>
+
+</html>
