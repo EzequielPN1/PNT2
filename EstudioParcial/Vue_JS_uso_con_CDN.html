@@ -6,6 +6,7 @@
 <div id="app">
 
     <p>{{titulo}}</p>
+
   
 <button v-on:click="cambiarEstado" >Event Handling(manejando eventos con el button)</button>
 
@@ -14,6 +15,12 @@
 <p v-else="condicional">{{mensajeDos}} {{mostrarEstado + condicional}}</p>
 
 <p v-show="condicional">{{mensajeTres}} {{mostrarEstado + condicional}}</p>
+
+
+<p>Uso de v-bind</p>
+<img v-bind:src="imagen" ></img>
+
+
 
 
 <p>Manejo de array: </p>
@@ -60,6 +67,9 @@ mostrarEstado: "- estado del condicional: ",
 
 inicioSlice:0,
 finSlice:0,
+
+imagen: "https://img.freepik.com/foto-gratis/disparo-gran-angular-solo-arbol-que-crece-cielo-nublado-puesta-sol-rodeada-cesped_181624-22807.jpg",
+
 
 productos: [{nombre:"mesa",precio:1000},
            {nombre:"Jarron",precio:200},
