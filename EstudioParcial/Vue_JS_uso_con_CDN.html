@@ -19,12 +19,19 @@
 
 <br>
 
-<input v-model="nombre" placeholder="nombre" > <input v-model="precio" > <button v-on:click="agregarProducto" >agregar</button>
+<input v-model="nombre" placeholder="nombre" > <input v-model="precio" > <button v-on:click="agregarProducto" >agregar</button><br><br>
 
-<button v-on:click="sacarUltimo" >Eliminar Ultimo</button>
 
-<button v-on:click="sacarPrimero" >Eliminar Primero</button>
 
+<button v-on:click="sacarUltimo" >uso de pop()</button><br><br>
+
+<button v-on:click="sacarPrimero" >uso de shift()</button><br><br>
+
+<button v-on:click="agregarAlInicioArray" >uso de unshift()</button><br><br>
+
+<button v-on:click="ordenarPorNombreAsc" >sort() ordenar por nombre</button><button v-on:click="ordenarPorPrecioAsc" >sort() ordenar por precio</button><br><br>
+
+<button v-on:click="reverse" >uso de reverse()</button>
 
 </div>
 
@@ -42,9 +49,10 @@ mensajeTres:"v-show activo",
 condicional:true,
 mostrarEstado: "- estado del condicional: ",
 
-productos: [{nombre:"Jarron",precio:200},
-            {nombre:"silla",precio:300},
-            {nombre:"mesa",precio:1000}],
+productos: [{nombre:"mesa",precio:1000},
+           {nombre:"Jarron",precio:200},
+           {nombre:"silla",precio:300},
+           {nombre:"Alacena",precio:1500}],
 
 nombre:"",
 precio:0,
@@ -59,7 +67,13 @@ precio:0,
 
 //shift() : elimina el primer elemento del array y lo retorna. Este método modifica la longitud del array
 
-//unshift():  agrega uno o más elementos al inicio del array, y devuelve la nueva longitud del array
+//unshift(): agrega uno o más elementos al inicio del array, y devuelve la nueva longitud del array
+
+//splice(): cambia el contenido de un array eliminando elementos existentes y/o agregando nuevos elementos. https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+
+//sort(): ordena los elementos de un arreglo (array) localmente y devuelve el arreglo ordenado
+
+//reverse(): orden de los elementos en el arreglo estará girado hacia la dirección opuesta a la establecida anteriormente.
 
 
 
@@ -88,6 +102,25 @@ methods: {
 
     sacarPrimero(){
        this.productos.shift() //acordarse que lo devuelve por lo que puede asignarse a una variable
+    },
+
+    agregarAlInicioArray(){
+        this.productos.unshift({nombre:"plato",precio:50},
+                               {nombre:"vaso",precio:20})
+    },
+
+    ordenarPorNombreAsc(){ 
+        this.productos.sort((a,b) => a.nombre.localeCompare(b.nombre))
+        //this.productos.sort((a,b) => -(a.nombre.localeCompare(b.nombre))) DESC
+    },
+
+    ordenarPorPrecioAsc(){
+        this.productos.sort((a,b) => a.precio - b.precio)
+        //this.productos.sort((a,b) => b.precio - a.precio) DESC
+    },
+
+    reverse(){
+        this.productos.reverse()
     }
     
 },
