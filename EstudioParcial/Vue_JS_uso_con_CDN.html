@@ -21,10 +21,9 @@
 
 <input v-model="nombre" placeholder="nombre" > <input v-model="precio" > <button v-on:click="agregarProducto" >agregar</button>
 
-<button v-on:click="eliminarUltimo" >Eliminar Ultimo</button>
+<button v-on:click="sacarUltimo" >Eliminar Ultimo</button>
 
-<p>Eliminados</p>
-<li v-for="elemento in productosEliminados">{{elemento.nombre }}</li>
+<button v-on:click="sacarPrimero" >Eliminar Primero</button>
 
 
 </div>
@@ -50,13 +49,18 @@ productos: [{nombre:"Jarron",precio:200},
 nombre:"",
 precio:0,
 
-productosEliminados:[]
+
 
 //Deteccion de cambios en Array
 
 //push() : asigna un valor al final del array a un nuevo índice (metodo agregarProducto)
 
-//pop() :
+//pop() : elimina el último elemento de un array y lo devuelve. Este método cambia la longitud del array.
+
+//shift() : elimina el primer elemento del array y lo retorna. Este método modifica la longitud del array
+
+//unshift():  agrega uno o más elementos al inicio del array, y devuelve la nueva longitud del array
+
 
 
 }
@@ -78,8 +82,12 @@ methods: {
      this.productos.push({nombre:this.nombre,precio:this.precio})
     },
 
-    eliminarUltimo(){
-      this.productosEliminados.push(this.productos.pop())
+    sacarUltimo(){
+      this.productos.pop() //acordarse que lo devuelve por lo que puede asignarse a una variable
+    },
+
+    sacarPrimero(){
+       this.productos.shift() //acordarse que lo devuelve por lo que puede asignarse a una variable
     }
     
 },
