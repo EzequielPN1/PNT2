@@ -7,13 +7,16 @@
 
     <p>{{titulo}}</p>
   
-<button v-on:click="cambiarEstado" >Boton</button>
+<button v-on:click="cambiarEstado" >Event Handling(manejando eventos con el button)</button>
 
 <p v-if="condicional" >{{mensaje}} {{mostrarEstado + condicional}}</p> 
 
 <p v-else="condicional">{{mensajeDos}} {{mostrarEstado + condicional}}</p>
 
 <p v-show="condicional">{{mensajeTres}} {{mostrarEstado + condicional}}</p>
+
+
+<p>Manejo de array: </p>
 
 <li v-for="elemento in productos">{{elemento.nombre +" $ "+ elemento.precio}}</li>
 
@@ -23,15 +26,21 @@
 
 
 
-<button v-on:click="sacarUltimo" >uso de pop()</button><br><br>
+<button v-on:click="sacarUltimo" >uso de pop() devolver el ultimo elemento</button><br><br>
 
-<button v-on:click="sacarPrimero" >uso de shift()</button><br><br>
+<button v-on:click="sacarPrimero" >uso de shift() devolver el primer elemento</button><br><br>
 
-<button v-on:click="agregarAlInicioArray" >uso de unshift()</button><br><br>
+<button v-on:click="agregarAlInicioArray" >uso de unshift() agrega uno o mas elementos al inicio del array</button><br><br>
 
 <button v-on:click="ordenarPorNombreAsc" >sort() ordenar por nombre</button><button v-on:click="ordenarPorPrecioAsc" >sort() ordenar por precio</button><br><br>
 
-<button v-on:click="reverse" >uso de reverse()</button>
+<button v-on:click="reverse" >uso de reverse() invierte la posicion de los elementos</button><br><br>
+
+<button v-on:click="filtrar" >uso de filter()filtrar menores a 1000</button><br><br>
+
+<button v-on:click="concat" >uso de concat() juntamos la misma lista por dos</button><br><br>
+
+Inicio<input v-model="inicioSlice" >Fin<input v-model="finSlice" ><button v-on:click="slice" >uso de slice() colocamos el inicio y fin para devolver los elementos</button><br><br>
 
 </div>
 
@@ -49,6 +58,9 @@ mensajeTres:"v-show activo",
 condicional:true,
 mostrarEstado: "- estado del condicional: ",
 
+inicioSlice:0,
+finSlice:0,
+
 productos: [{nombre:"mesa",precio:1000},
            {nombre:"Jarron",precio:200},
            {nombre:"silla",precio:300},
@@ -59,7 +71,11 @@ precio:0,
 
 
 
-//Deteccion de cambios en Array
+//-Deteccion de cambios en Array
+
+
+
+//Metodos de mutacion: mutan la matriz original a la que se les llama.
 
 //push() : asigna un valor al final del array a un nuevo índice (metodo agregarProducto)
 
@@ -74,6 +90,18 @@ precio:0,
 //sort(): ordena los elementos de un arreglo (array) localmente y devuelve el arreglo ordenado
 
 //reverse(): orden de los elementos en el arreglo estará girado hacia la dirección opuesta a la establecida anteriormente.
+
+
+ 
+
+
+//Metodos que no mutan el array: no mutan a la matriz pero devuelven una nueva matris por lo que hay q guardarla en una nueva variable
+
+//filter(): filtra solo a los elementos de la matriz dada que pasan la prueba implementada por la función proporcionada y devuleve una matriz con dichos elementos
+
+//concat(): se utiliza para fusionar dos o más matrices. Este método no cambia las matrices existentes, sino que devuelve una nueva matriz.
+
+//slice(): devuelve una copia de una parte del array dentro de un nuevo array empezando por inicio hasta fin (fin no incluido). El array original no se modificará.Sintaxis : array.slice(start, end)
 
 
 
@@ -121,6 +149,18 @@ methods: {
 
     reverse(){
         this.productos.reverse()
+    },
+
+    filtrar(){
+        this.productos = this.productos.filter((elemento) => elemento.precio >= 1000)
+    },
+
+    concat(){
+        this.productos = this.productos.concat(this.productos)
+    },
+
+    slice(){
+        this.productos = this.productos.slice(this.inicioSlice,this.finSlice)
     }
     
 },
