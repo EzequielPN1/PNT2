@@ -12,6 +12,65 @@
 
 <script>
 
+//-Funciones y funciones con flecha: 
+
+//Metodo con function
+const resultado = function suma(a,b){
+      console.log(a+b)
+}
+
+resultado(5,5)
+
+
+//Metodo sin function : siempre y cuando la ejecucion sea en una sola linea no es necesario la palabra return
+const suma =(a,b) => console.log(a+b)
+
+suma(5,5)
+
+const otraSuma=(a,b) => {
+ const c = a+b
+ return console.log(c+5)
+}
+
+otraSuma(5,5)
+
+
+
+
+//- Funciones Anónimas y funciones Flecha (arrow function):
+
+//Funciones Anónimas: Una función anónima es una función sin nombre,deben ser asignadas a una variable
+// si se van a reutilizar
+
+let show = function() {
+    console.log('Soy una función anónima');
+};
+
+show();
+
+
+// Funciones Flecha (arrow function)
+
+ show = () => console.log('Soy una función anónima reedeclarada'); // reedeclaro la funcion anonima acortando con el arrow 
+
+show()
+
+
+//otro ejemplo de funcion flecha:
+
+const nombres = []
+
+const funcionFlecha = (nombre)=> nombres.push(nombre)
+
+funcionFlecha("Pedro")
+funcionFlecha("Marcelo")
+
+nombres.forEach(element => {
+    console.log(element)
+});
+
+
+
 //-Recorrer una lista con Foreach
 
 const lista = [1,2,3,4,5]
@@ -20,7 +79,9 @@ lista.forEach(element => {
    // console.log(element)
 });
 
-//usando arrow
+
+
+//usando Flecha
 
 lista.forEach(numero => console.log(numero))
 
@@ -29,6 +90,9 @@ lista.forEach(numero => console.log(numero))
 const productos = [{id:1,nombre:'Tornillo'},{id:2,nombre:'Martillo'},{id:2,nombre:'Pinza'}]
 
 productos.forEach(producto => console.log(producto.nombre))
+
+
+
 
 
 
