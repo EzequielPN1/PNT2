@@ -48,7 +48,7 @@
 <button v-on:click="concat" >uso de concat() juntamos la misma lista por dos</button><br><br>
 
 Inicio<input v-model="inicioSlice" >Fin<input v-model="finSlice" ><button v-on:click="slice" >uso de slice() colocamos el inicio y fin para devolver los elementos</button><br><br>
-
+ 
 </div>
 
 
@@ -172,7 +172,7 @@ methods: {
     slice(){
         this.productos = this.productos.slice(this.inicioSlice,this.finSlice)
     }
-    
+    //
 },
 
 
