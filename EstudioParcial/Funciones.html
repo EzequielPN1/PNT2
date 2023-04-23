@@ -12,9 +12,9 @@
 
 <script>
 
-//-Funciones y funciones con flecha: 
+//-Funciones Comunes y funciones con flecha: 
 
-//Metodo con function
+//Funcion comun:
 const resultado = function suma(a,b){
       console.log(a+b)
 }
@@ -27,6 +27,7 @@ const suma =(a,b) => console.log(a+b)
 
 suma(5,5)
 
+//con el return porque se ejecuta con mas de una linea
 const otraSuma=(a,b) => {
  const c = a+b
  return console.log(c+5)
@@ -167,12 +168,15 @@ console.log(precioTotal)
 
 const numerosDesordenados = [9,6,4,3,1,2,5,7,8]
 
+console.log("Ordenamos la misma lista")
+
 
 console.log(numerosDesordenados.sort((a,b) => a-b))
 
 console.log(numerosDesordenados.sort((a,b) => b-a))
 
-//Para odenar String 
+//Para ordenar String 
+console.log("ordenar con string")
 
 const nombresDesordenados =["Juan","Alex","Maria","Marta"]
 
@@ -184,6 +188,8 @@ console.log(nombresDesordenados.sort((a,b) => b.localeCompare(a)))
 //Para obtener una nueva lista ordenada, primero hacemos una copia y luego ordenamos
 
 const nombresCopia = [...nombresDesordenados];
+
+console.log("Copiamos una lista y la ordenamos asc y desc")
 
 console.log(nombresCopia.sort((a,b) => a.localeCompare(b)))
 
