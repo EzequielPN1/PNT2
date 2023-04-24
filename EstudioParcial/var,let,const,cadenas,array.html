@@ -13,7 +13,8 @@
 
 <script>
 
-//-Variables Var:     
+//-Variables Var: Forma vieja , se corre el riesgo de ser definidas mas de una vez y se pierda la informacion
+//inicial, son solamente globales no respetan el scoop en un metodo.
 
 var saludar // si no esta definida por defecto se declara undefined
 
@@ -34,7 +35,8 @@ decirNombre() // las variables var si se modifican de manera local, tambien se m
 
 
 
-//-Variables Let:
+//-Variables Let: Tienen dos beneficios con respecto a var, chequea que no este mas de una vez definida,
+//ademas respeta el scoop en la variable locales.
 
 let dia = "Lunes"
 
@@ -58,9 +60,9 @@ let saludarLet = "dice Hola"; // variable global
 
 
 //-Constantes: al igual q las let solo pueden ser accesidadas en el bloque que fueron declaradas,
-//y no puede modificarse ni volver a declararse
+//y no puede modificarse ni volver a declararse, A
 
-const calle = "Olazabal"
+const CALLE = "Olazabal"
 
 //calle ="donado" // no se puede hacer
 
@@ -69,8 +71,9 @@ const calle = "Olazabal"
 
 
 //-Cadenas :  Las cadenas son inmutables no se puden cambiar los elementos que la componen
+//Se usa la variable const para proteger el arreglo 
 
-let cadena ="Carlos"
+const cadena ="Carlos"
 cadena[0]="S"
 console.log(cadena[0]) // sigue siendo C
 
