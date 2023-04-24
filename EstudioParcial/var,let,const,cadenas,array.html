@@ -15,6 +15,11 @@
 
 //Las variables por defecto si no son asignadas son undefined, para que sean null hay que asignarle el null 
 
+
+
+//----------------------------------------------------------------------------------------------------------------
+
+
 //-Variables Var: Forma vieja , se corre el riesgo de ser definidas mas de una vez y se pierda la informacion
 //inicial, son solamente globales no respetan el scoop en un metodo.
 
@@ -35,7 +40,7 @@ function decirNombre(){
 decirNombre() // las variables var si se modifican de manera local, tambien se modifican de manera global
 
 
-
+//----------------------------------------------------------------------------------------------------------------
 
 //-Variables Let: Tienen dos beneficios con respecto a var, chequea que no este mas de una vez definida,
 //ademas respeta el scoop en la variable locales.
@@ -60,6 +65,7 @@ let saludarLet = "dice Hola"; // variable global
 
 
 
+//----------------------------------------------------------------------------------------------------------------
 
 //-Constantes: al igual q las let solo pueden ser accesidadas en el bloque que fueron declaradas,
 //y no puede modificarse ni volver a declararse, A
@@ -70,6 +76,7 @@ const CALLE = "Olazabal"
 
 
 
+//----------------------------------------------------------------------------------------------------------------
 
 
 //-Cadenas :  Las cadenas son inmutables no se puden cambiar los elementos que la componen
@@ -90,6 +97,8 @@ console.log(cadenaDos.trim())
 console.log(cadenaDos.trim().split(''))// en letras
 console.log(cadenaDos.trim().split(' '))// en palabras
 
+
+//----------------------------------------------------------------------------------------------------------------
 
 //- Arreglos : Los arrays pueden contener cualquier tipo de datos
 

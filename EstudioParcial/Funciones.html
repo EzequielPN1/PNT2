@@ -12,7 +12,7 @@
 
 <script>
 
-//-Funciones Comunes y funciones con flecha: 
+//-Funciones Comunes : 
 
 //Funcion comun:
 const resultado = function suma(a,b){
@@ -20,21 +20,6 @@ const resultado = function suma(a,b){
 }
 
 resultado(5,5)
-
-
-//Metodo sin function : siempre y cuando la ejecucion sea en una sola linea no es necesario la palabra return
-const suma =(a,b) => console.log(a+b)
-
-suma(5,5)
-
-//con el return porque se ejecuta con mas de una linea
-const otraSuma=(a,b) => {
- const c = a+b
- return console.log(c+5)
-}
-
-otraSuma(5,5)
-
 
 
 
@@ -48,6 +33,21 @@ let show = function() {
 };
 
 show();
+
+
+//siempre y cuando la ejecucion sea en una sola linea no es necesario la palabra return
+const suma =(a,b) => console.log(a+b)
+
+suma(5,5)
+
+
+//con el return porque se ejecuta con mas de una linea
+const otraSuma=(a,b) => {
+ const c = a+b
+ return console.log(c+5)
+}
+
+otraSuma(5,5)
 
 
 // Funciones Flecha (arrow function)
@@ -98,7 +98,7 @@ productos.forEach(producto => console.log(producto.nombre))
 
 
 
-
+//----------------------------------------------------------------------------------------------------------------
 
 
 //-Metodo Map :El método map() crea un nuevo array con los resultados de la llamada a la función indicada aplicados
@@ -127,7 +127,7 @@ console.log(personasMasDosAnios)
 
 
 
-
+//----------------------------------------------------------------------------------------------------------------
 
 //-Metodo  Filter : El método filter() crea un nuevo array con todos los elementos que cumplan la
 //condición implementada por la función dada.
@@ -147,7 +147,7 @@ const clientesImpagos = clientes.filter(cliente => cliente.pago == false && clie
 console.log(clientesImpagos)
 
 
-
+//----------------------------------------------------------------------------------------------------------------
 
 //-Reduce: 
 
@@ -166,6 +166,8 @@ const items = [{nombre:"Arroz",precio:5},
 const precioTotal = items.reduce((a,c) => {return a + c.precio},0)
 
 console.log(precioTotal)
+
+//----------------------------------------------------------------------------------------------------------------
 
 
 //-Metodo Sort : Para ordenar una lista, usamos el método sort, que ordena la misma lista (mutación)
@@ -198,6 +200,9 @@ console.log("Copiamos una lista y la ordenamos asc y desc")
 console.log(nombresCopia.sort((a,b) => a.localeCompare(b)))
 
 console.log(nombresDesordenados.sort((a,b) => b.localeCompare(a)))
+
+
+
 
 </script>
 
