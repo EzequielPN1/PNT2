@@ -117,12 +117,46 @@ const semana = ["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Doming
 
 const diasNoHabiles = semana.splice(semana.indexOf("Sabado"),semana.indexOf("Domingo"))
 
-console.log(semana)
-console.log(diasNoHabiles)
+console.log("Uso del splice sacando sabado y domingo \n" +semana)
+console.log("resto del splice:  "+diasNoHabiles)
 
 //agreagamos a partir del indice 5 dos elementos
 semana.splice(5,0,"Sabado","Domingo")
-console.log(semana)
+console.log("Uso del Splice para sumar sabado y domingo \n"+semana)
+
+//el metodo slice(): devuelve un array desde y hasta definiendo en los (inicio,fin) por index pero sin modificar
+// el array original
+
+
+
+//Copias superficiales: 
+
+//Para copiar un array tambien se puede usar Spread Operator usando los ...
+const copiaSemana = [...semana]
+console.log("Uso del Spread Operator \n" + copiaSemana)
+
+//tambien se puede sumar  dos arrays: 
+const sumaDeArryas = [...semana,...array]
+console.log(sumaDeArryas)
+
+//Problema con objetos: si se modifica la copia se moficia el orinal
+
+const persona = {
+    nombre:"Pedro",
+    edad:29,
+    estudios:["Primario","secundario"]
+}
+
+const copiaPersona = {...persona}
+
+console.log(persona.estudios)
+
+copiaPersona.estudios.push("Terciario")
+
+console.log(persona.estudios) // deberia ser primario y secundario
+
+
+
 
 
 </script>
