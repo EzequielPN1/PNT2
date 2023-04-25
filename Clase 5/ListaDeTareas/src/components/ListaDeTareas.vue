@@ -29,7 +29,7 @@
      
     </template>
 
-<script >
+<script>
 
 
 import AgregarTarea from './AgregarTarea.vue';
