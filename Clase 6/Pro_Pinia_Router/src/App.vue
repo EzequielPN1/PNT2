@@ -1,17 +1,17 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import Loguin from './views/Loguin.vue'
+
 </script>
 
 <template>
   <header>
  
-    <Loguin/>
-  
+    
+    <RouterView /> 
 
   </header>
 
-  <RouterView />
+ 
 </template>
 
 
