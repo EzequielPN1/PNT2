@@ -32,7 +32,7 @@ app.post("/Login", (req, res) => {
 
   } else {
 
-    res.sendStatus(400); // error
+    res.sendStatus(400); 
   }
 
 }),
