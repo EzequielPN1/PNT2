@@ -64,6 +64,8 @@ export default{
     </div>
     <button type="submit" class="btn btn-primary">Entrar</button>
   </form>
+
+  <RouterLink to="/"><button>Volver</button></RouterLink>
 </template>
 
 <style></style>

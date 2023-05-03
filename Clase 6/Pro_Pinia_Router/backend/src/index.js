@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import fs from 'fs';
 
 
 const app = express();
@@ -8,55 +9,92 @@ app.use(bodyParser.json());
 app.use(cors());
 const port = 3001;
 
-//sistema prototipo
-const listaUsuarios = [];
-const listaTelefonos =[];
+
 
 app.post("/Login", (req, res) => {
-  // simulo traer un usuario de la base de datos
-  // este prototipo es monousuario para este ejemplo
-  console.log(req);
-  const listaUsuarios = [
-    { name: "Marcelo", mail: "m@m.com", pass: "123" },
-    { name: "María", mail: "maria@m.com", pass: "123" },
-  ];
-  let index = listaUsuarios.findIndex(
-    (registro) => registro.mail == req.body.mail
-  );
-  if (req.body && index != -1 && req.body.pass == listaUsuarios[index].pass) {
-    console.log("Envia respuesta con nombre");
-    res.status(200).json({ nombre: listaUsuarios[index].name });
+
+  const datos = fs.readFileSync('datos.txt', 'utf-8');
+
+  let separadas = datos.split(' ');
+
+  let usuario  = req.body.mail.toString();
+  let pass = req.body.pass.toString();
+
+  let existeUsuario = separadas.includes(usuario)
+
+  let indice = separadas.indexOf(usuario)
+
+  let passCorrecta = separadas[indice+1] == pass
+
+  if (existeUsuario && passCorrecta) {
+
+    res.status(200).json({ nombre: separadas[indice - 1] });
+
   } else {
-    console.log("Envía error");
-    res.sendStatus(400);
+
+    res.sendStatus(400); // error
   }
-});
+
+}),
+
 
 app.post("/register", (req, res) => {
-  listaUsuarios.push(req.body);
 
-  console.log(listaUsuarios);
-  // const usuario = { email : 'test@test.com' , password : '123456'};
-  // if ( req.body && req.body.email == usuario.email && req.body.password == usuario.password ) {
-  //   res.sendStatus(200);
-  // } else {
-  //   res.sendStatus(400);
-  // }
+  const datos = fs.readFileSync('datos.txt', 'utf-8');
+
+  let separadas = datos.split(' ');
+
+  let usuario  = req.body.mail.toString();
+
+  let pass = req.body.pass.toString();
+
+
+  let usuarioIndice = separadas.indexOf(usuario)
+   
+  let passIndice = separadas.indexOf(pass)
+
+ 
+  if(usuarioIndice != -1 ){
+    res.sendStatus(400);
+  }else{
+    res.sendStatus(200);
+    
+
+    const datos = req.body.nombre.toString()+' '+req.body.mail.toString()+' '+req.body.pass.toString()+' ';
+    fs.appendFile('datos.txt', datos , (err) => {
+      if (err) throw err;
+      console.log('El archivo ha sido guardado.');
+    });
+   
+  }
+
+
 });
 
-// simulo una base de datos en memoria
-// vendedores
 
-const lista = [
-  { codigo: 100, nombre: "Maria" },
-  { codigo: 101, nombre: "Juan" },
-];
 
 app.get("/users", (req, res) => {
-  // CONSULTA A BASE DE DATOS
-  res.json(lista);
+
+  const datos = fs.readFileSync('datos.txt', 'utf-8');
+
+  let separadas = datos.split(' ');
+  let nombres=[];
+
+  separadas.pop();
+
+ for (let index = 0; index < separadas.length; index+=3) {
+  const element = separadas[index];
+    nombres.push(element);
+ }
+  
+
+  res.json(nombres);
   
 });
+
+
+
+
 
 app.get("/", (req, res) => {
   res.send("Servidor funcionando");

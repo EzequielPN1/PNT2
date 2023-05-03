@@ -7,7 +7,8 @@ export const useCounterStore = defineStore("counter", {
     return {
       count: ref(0),
       userName: "",
-      listaUsers: [],
+      nombres:[],
+
     };
   },
   actions: {
