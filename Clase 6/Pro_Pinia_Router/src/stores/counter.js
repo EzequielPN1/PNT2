@@ -8,6 +8,7 @@ export const useCounterStore = defineStore("counter", {
       count: ref(0),
       userName: "",
       nombres:[],
+      mensajesRecibidos:[]
 
     };
   },

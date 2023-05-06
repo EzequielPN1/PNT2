@@ -22,8 +22,7 @@ export default{
   },
   methods: {
     loguear: (user, vue) => {
-      let respuesta = axios
-        .post("http://localhost:3001/login", user)
+      let respuesta = axios.post("http://localhost:3001/login", user)
         .then(function (response) {
           vue.userName = response.data.nombre;
           vue.$router.push("/Home");
@@ -64,8 +63,11 @@ export default{
     </div>
     <button type="submit" class="btn btn-primary">Entrar</button>
   </form>
-
+  
+<div style="margin-top: 20px;">
   <RouterLink to="/"><button>Volver</button></RouterLink>
+</div>
+
 </template>
 
 <style></style>

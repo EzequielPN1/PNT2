@@ -10,12 +10,9 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <h1>Inicio</h1>
 <div >
-<RouterLink to="/Login"><button>Loguearse</button></RouterLink>
+<RouterLink to="/Login"><button>Loguearse</button><RouterLink to="/Registro"><button>Registrarse</button></RouterLink></RouterLink>
 </div>
 
-<div>
-<RouterLink to="/Registro"><button>Registrarse</button></RouterLink>
-</div>
 </template>
 
 

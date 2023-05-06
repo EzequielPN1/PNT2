@@ -20,14 +20,16 @@ import axios from "axios";
             };
         },
         methods: {
+         
           registerUser(vue) {
-  axios.post('http://localhost:3001/register', this.usuario)
+
+     axios.post('http://localhost:3001/register', this.usuario)
     .then(response => {
-      // Lógica para manejar la respuesta exitosa
+     
       vue.$router.push("/");
     })
     .catch(error => {
-      // Lógica para manejar el error
+     
       console.log(error);
       
       alert("Error mail ya ingresado")
@@ -35,21 +37,10 @@ import axios from "axios";
 }
 
 
-
         }
         };
-        
-
-
-
-
-
+      
 </script>
-
-
-
-
-
 
 
 
@@ -58,7 +49,7 @@ import axios from "axios";
     
     <form @submit.prevent="registerUser(vue)">
         <div class="form-group">
-        <label for="exampleInputPassword1">Nombre</label>
+        <label >Nombre</label>
         <input
           v-model="usuario.nombre"
            
@@ -90,7 +81,10 @@ import axios from "axios";
       </div>
       <button type="submit" class="btn btn-primary">Registrarse</button>
     </form>
-    <RouterLink to="/"><button>Volver</button></RouterLink>
+  
+    <div style="margin-top: 20px;">
+  <RouterLink to="/"><button>Volver</button></RouterLink>
+   </div>  
   </template>
   
 

@@ -4,18 +4,17 @@ import { useCounterStore } from "../stores/counter";
 import { RouterLink } from "vue-router";
 import axios from "axios";
 import EnviarMensaje from "../components/EnviarMensaje.vue"
-import VerMensajes from "../components/VerMensajes.vue";
 
 
 export default {
        setup(){
 
 const store = useCounterStore();
-const { userName } = storeToRefs(store);
+
 const {mensajesRecibidos} = storeToRefs(store);
 
         return{
-        userName,mensajesRecibidos
+        mensajesRecibidos
                 
         }
        },
@@ -63,31 +62,37 @@ verLista(){
               this.obtenerMensajesRecibidos()
               
         },
-        components: {EnviarMensaje,VerMensajes}
+     
         };
 
 </script>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <template>
 
-  <div class="d-flex justify-content-between align-items-center">
-  <h2 v-if="userName != ''" class="pr-4">{{ userName }}</h2>
-  <RouterLink v-if="userName != ''" to="/">
-    <button class="ml-auto" @click="userName = ''">Salir</button>
-  </RouterLink>
-</div>
 
-  
+<div><h1 >Bandeja de entrada: {{ mensajesRecibidos.length }}</h1></div>
 
-       <EnviarMensaje />
-      
-        <VerMensajes />
-      
-
-  
-
-
-
+<div style="margin-top: 20px;">
+     <button @click="verLista">{{ verMensajes ? 'Ocultar Mensajes' : 'Mostrar Mensajes' }}</button>
+    <ul v-if="verMensajes" style="margin-top: 20px;">
+      <li v-for="mensaje in mensajesRecibidos">{{ mensaje }}</li>
+    </ul>
+  </div>
 </template>
-
-<style></style>
