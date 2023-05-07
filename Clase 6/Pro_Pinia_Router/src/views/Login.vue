@@ -60,13 +60,14 @@ export default{
         class="form-control"
         id="exampleInputPassword1"
       />
-    </div>
-    <button type="submit" class="btn btn-primary">Entrar</button>
+    </div  >
+    <div class="d-flex justify-content-between align-items-center">
+    <button type="submit" class="btn btn-primary" >Entrar</button>
+    <RouterLink to="/"><button class="btn btn-secondary" >Volver</button></RouterLink>
+  </div>
   </form>
   
-<div style="margin-top: 20px;">
-  <RouterLink to="/"><button>Volver</button></RouterLink>
-</div>
+
 
 </template>
 

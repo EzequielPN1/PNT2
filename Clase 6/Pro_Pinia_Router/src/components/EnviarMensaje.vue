@@ -3,6 +3,8 @@
 import { storeToRefs } from "pinia";
 import { useCounterStore } from "../stores/counter";
 import axios from "axios";
+import Mensaje from "./Mensaje.vue";
+
 
 export default {
        setup(){
@@ -21,13 +23,9 @@ const { nombres } = storeToRefs(store);
             return {
               mostrar:false,
               vue:this,
-              mensaje:{
-                   nombreDestino:"",
-                   nombreEmisor:"",
-                   contenido:"",                         
-            },
+              mensaje:Mensaje,
 
-            verMensajes:false,
+          
 
             };
         },
@@ -60,26 +58,20 @@ const { nombres } = storeToRefs(store);
         console.error(error);
       }
       this.$refs.miFormulario.reset(); 
+      
     
 },
 
-
         },
-
-
 
         mounted() {
-              this.nombresUsuarios(); // llama al método cuando el componente es montado
-             
-              
+              this.nombresUsuarios(); // llama al método cuando el componente es montado             
         },
+
+
         };
 
 </script>
-
-
-
-
 
 
 
@@ -87,7 +79,7 @@ const { nombres } = storeToRefs(store);
     <form ref="miFormulario" @submit.prevent="envioMensaje()">
 
 <div class="form-group">
-  <label for="exampleInputEmail1">Usuario</label>
+  <label for="exampleInputEmail1">a Usuario</label>
   <select v-model="mensaje.nombreDestino"  class="form-control"
     id="exampleInputEmail1"
     aria-describedby="emailHelp">

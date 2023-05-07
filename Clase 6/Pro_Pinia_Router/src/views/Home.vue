@@ -24,45 +24,11 @@ const {mensajesRecibidos} = storeToRefs(store);
             return {
 
               vue:this,
-            verMensajes:false,
-
+            
             };
         },
-        methods: {
-           
-
-    
 
 
-
-async obtenerMensajesRecibidos() {
-  
-      try {
-        const datos = { userName: this.userName };
-        const respuesta = await axios.post('http://localhost:3001/traerMensajes',datos); 
-        this.mensajesRecibidos = respuesta.data; 
-      } catch (error) {
-        console.error(error);
-      }
-
-      
-    },
-
-verLista(){
-  if(this.verMensajes){
-    this.verMensajes=false
-  }else{
-    this.verMensajes=true
-  }
-}
-
-        },
-
-
-        mounted() {
-              this.obtenerMensajesRecibidos()
-              
-        },
         components: {EnviarMensaje,VerMensajes}
         };
 
@@ -71,22 +37,18 @@ verLista(){
 <template>
 
   <div class="d-flex justify-content-between align-items-center">
-  <h2 v-if="userName != ''" class="pr-4">{{ userName }}</h2>
+  <h2 v-if="userName != ''" class="pr-4">Perfil: {{ userName }}</h2>
   <RouterLink v-if="userName != ''" to="/">
-    <button class="ml-auto" @click="userName = ''">Salir</button>
+    <button class="nav-link btn btn-outline-danger" @click="userName = ''" >Salir</button>
   </RouterLink>
+
 </div>
 
-  
 
-       <EnviarMensaje />
+        <EnviarMensaje />
       
-        <VerMensajes />
-      
-
-  
-
-
+        <VerMensajes /> 
+        
 
 </template>
 

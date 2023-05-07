@@ -83,7 +83,7 @@ import axios from "axios";
     </form>
   
     <div style="margin-top: 20px;">
-  <RouterLink to="/"><button>Volver</button></RouterLink>
+  <RouterLink to="/"><button class="btn btn-secondary">Volver</button></RouterLink>
    </div>  
   </template>
   

@@ -66,7 +66,7 @@ app.get("/users", (req, res) => {
   
 });
 
-//----------------------------------------------------------------------------------------------------------------------------
+
 
 
 app.post("/EnviarMensaje", (req, res) => {
@@ -108,6 +108,47 @@ app.post("/EnviarMensaje", (req, res) => {
 
 
 
+ 
+app.delete("/borrarMensajes", (req, res) => {
+
+  const rutaArchivo = './datos2.txt';
+
+  const datos = fs.readFileSync(rutaArchivo, 'utf-8');
+  const separados = datos.split('-');
+  let nomUsuario = 'to'+req.body.userName.toString();
+  let mensajes=[];
+  
+  separados.forEach(element => {     
+   if(!element.includes(nomUsuario)){   
+    mensajes.push(element+'-')
+   }
+
+  });
+  mensajes.pop()
+
+  fs.truncate(rutaArchivo, 0, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error al borrar el contenido del archivo');
+    } else {
+      res.status(200).send();
+    }
+  });
+
+mensajes.forEach(element => {
+    
+  console.log(element)
+
+  fs.appendFile(rutaArchivo, element, function (error) {
+    if (error) throw error;
+    console.log('Los datos se han agregado al archivo');
+  });
+
+ });
+
+   mensajes=[]
+   res.json(mensajes);
+});
 
 
 
@@ -117,7 +158,18 @@ app.post("/EnviarMensaje", (req, res) => {
 
 
 
-//----------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
 
 
 app.get("/", (req, res) => {
