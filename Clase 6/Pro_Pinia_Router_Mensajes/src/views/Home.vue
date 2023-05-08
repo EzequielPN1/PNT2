@@ -1,8 +1,7 @@
-<script >
+<script>
 import { storeToRefs } from "pinia";
 import { useCounterStore } from "../stores/counter";
 import { RouterLink } from "vue-router";
-import axios from "axios";
 import EnviarMensaje from "../components/EnviarMensaje.vue"
 import VerMensajes from "../components/VerMensajes.vue";
 
@@ -43,7 +42,6 @@ const {mensajesRecibidos} = storeToRefs(store);
   </RouterLink>
 
 </div>
-
 
         <EnviarMensaje />
       

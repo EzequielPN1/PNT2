@@ -9,12 +9,14 @@ app.use(bodyParser.json());
 app.use(cors());
 const port = 3001;
 
+const sepUsuario='‖';
+const sepMensaje = '§';
 
 
 app.post("/Login", (req, res) => {
 
   const datos = fs.readFileSync('datos.txt', 'utf-8');
-  let separadas = datos.split(' ');
+  let separadas = datos.split(sepUsuario);
   let usuario  = req.body.mail.toString();
   let pass = req.body.pass.toString();
   let existeUsuario = separadas.includes(usuario)
@@ -32,7 +34,7 @@ app.post("/Login", (req, res) => {
 app.post("/register", (req, res) => {
 
   const datos = fs.readFileSync('datos.txt', 'utf-8');
-  let separadas = datos.split(' ');
+  let separadas = datos.split(sepUsuario);
   let usuario  = req.body.mail.toString();
   let usuarioIndice = separadas.indexOf(usuario)
    
@@ -40,7 +42,7 @@ app.post("/register", (req, res) => {
     res.sendStatus(400);
   }else{
     res.sendStatus(200);
-    const datos = req.body.nombre.toString()+' '+req.body.mail.toString()+' '+req.body.pass.toString()+' ';
+    const datos = req.body.nombre.toString()+sepUsuario+req.body.mail.toString()+sepUsuario+req.body.pass.toString()+sepUsuario;
     fs.appendFile('datos.txt', datos , (err) => {
       if (err) throw err;
       console.log('El archivo ha sido guardado.');
@@ -53,7 +55,7 @@ app.post("/register", (req, res) => {
 app.get("/users", (req, res) => {
 
   const datos = fs.readFileSync('datos.txt', 'utf-8');
-  let separadas = datos.split(' ');
+  let separadas = datos.split(sepUsuario);
   let nombres=[];
   separadas.pop();
 
@@ -74,7 +76,7 @@ app.post("/EnviarMensaje", (req, res) => {
   const now = new Date();
   const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-  let datos =  'from ' +req.body.nombreEmisor.toString() +'_to'+req.body.nombreDestino.toString()+ '_ ' +timeString + ' '+ req.body.contenido.toString() + '-'
+  let datos =  'from ' +req.body.nombreEmisor.toString() +'_to'+req.body.nombreDestino.toString()+ '_' +timeString + ' '+ req.body.contenido.toString() + sepMensaje
     fs.appendFile('datos2.txt', datos , (err) => {
       if (err) throw err;
       res.sendStatus(200);
@@ -85,8 +87,9 @@ app.post("/EnviarMensaje", (req, res) => {
 
 
   app.post("/traerMensajes", (req, res) => {
+    
     const datos = fs.readFileSync('datos2.txt', 'utf-8');
-    let separados = datos.split('-');
+    let separados = datos.split(sepMensaje);
     let mensajes=[];
     let nomUsuario = 'to'+req.body.userName.toString();
 
@@ -114,13 +117,13 @@ app.delete("/borrarMensajes", (req, res) => {
   const rutaArchivo = './datos2.txt';
 
   const datos = fs.readFileSync(rutaArchivo, 'utf-8');
-  const separados = datos.split('-');
+  const separados = datos.split(sepMensaje);
   let nomUsuario = 'to'+req.body.userName.toString();
   let mensajes=[];
   
   separados.forEach(element => {     
    if(!element.includes(nomUsuario)){   
-    mensajes.push(element+'-')
+    mensajes.push(element+sepMensaje)
    }
 
   });
@@ -149,22 +152,6 @@ mensajes.forEach(element => {
    mensajes=[]
    res.json(mensajes);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------------------------------------------------------------------
-
-
 
 
 

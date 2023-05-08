@@ -65,7 +65,7 @@ const { nombres } = storeToRefs(store);
         },
 
         mounted() {
-              this.nombresUsuarios(); // llama al método cuando el componente es montado             
+              this.nombresUsuarios();            
         },
 
 

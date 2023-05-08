@@ -1,6 +1,4 @@
 
-
-
 <script>
 
 import axios from "axios";
@@ -79,12 +77,13 @@ import axios from "axios";
           id="exampleInputPassword1"
         />
       </div>
-      <button type="submit" class="btn btn-primary">Registrarse</button>
+      <div class="d-flex justify-content-between align-items-center">
+   <button type="submit" class="btn btn-primary">Registrarse</button>
+    <RouterLink to="/"><button class="btn btn-secondary" >Volver</button></RouterLink>
+  </div>
     </form>
   
-    <div style="margin-top: 20px;">
-  <RouterLink to="/"><button class="btn btn-secondary">Volver</button></RouterLink>
-   </div>  
+
   </template>
   
 
