@@ -1,33 +1,33 @@
 <script>
-import axios from "axios";
 import { storeToRefs } from "pinia";
-import { useCounterStore } from "../stores/counter";
+import { useUserStore } from "../stores/user";
+import { userService } from "../Services/userService.js"
+
 
 export default{
   setup() {
-    const store = useCounterStore();
-    const { userName } = storeToRefs(store);
+    const store = useUserStore();
+    const { usuario } = storeToRefs(store);
     return {
-        userName,
+      usuario,
     };
   },
   data() {
     return {
       user: {
-        mail: "",
+        email: "",
         pass: "",
       },
       vue: this,
+      
     };
   },
   methods: {
     loguear: (user, vue) => {
-      let respuesta = axios.post("http://localhost:3001/login", user)
+      userService.login(user)
         .then(function (response) {
-          vue.userName = response.data.nombre;
-          vue.$router.push("/Home");
-        
-
+          vue.usuario.nombre = response.data;
+          vue.$router.push("/Home");       
         })
         .catch(function (error) {
           alert("Error de usuario y contraseña");
@@ -40,12 +40,11 @@ export default{
 
 <template>
   <h1>Login</h1>
-  <h1>{{ userName }}</h1>
   <form @submit.prevent="loguear(user, vue)">
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
       <input
-        v-model="user.mail"
+        v-model="user.email"
         type="email"
         class="form-control"
         id="exampleInputEmail1"

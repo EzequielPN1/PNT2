@@ -1,64 +1,49 @@
 <script>
 import { storeToRefs } from "pinia";
-import { useCounterStore } from "../stores/counter";
+import { useUserStore } from "../stores/user";
 import { RouterLink } from "vue-router";
-import axios from "axios";
+import { onMounted } from 'vue'
 
 
 export default {
        setup(){
 
-const store = useCounterStore();
-const { userName } = storeToRefs(store);
-const { nombres } = storeToRefs(store);
+const store = useUserStore();
+const { usuario } = storeToRefs(store);
+const {listaUsuarios} = storeToRefs(store);
+const { nombresUsuarios } = store;
+onMounted(() => {nombresUsuarios();});
 
         return{
-        userName,nombres,     
+          usuario,listaUsuarios,
         }
        },
-        data() {
- 
-            return {
 
-              vue:this,
-            
-            };
-        },
-
-        methods: {
-
-        async nombresUsuarios() {
-      try {
-        const respuesta = await axios.get('http://localhost:3001/users'); 
-        this.nombres = respuesta.data; 
-      } catch (error) {
-        console.error(error);
-      }
-    },
-
-  },
-
-    mounted() {
-              this.nombresUsuarios();            
-        },
-
-       
         };
 
 </script>
 
+
+
+
+
+
+
+
 <template>
 
   <div class="d-flex justify-content-between align-items-center">
-  <h2 v-if="userName != ''" class="pr-4">Perfil: {{ userName }}</h2>
-  <RouterLink v-if="userName != ''" to="/">
-    <button class="nav-link btn btn-outline-danger" @click="userName = ''" >Salir</button>
+  <h2 v-if="usuario.nombre != ''" class="pr-4">Perfil: {{ usuario.nombre }}</h2>
+  <RouterLink v-if="usuario.nombre != ''" to="/">
+    <button class="nav-link btn btn-outline-danger" @click="usuario.nombre = ''" >Salir</button>
   </RouterLink>
 </div>
 
 <div >
-<li v-for="nombre in nombres"  >{{ nombre }}</li>
+<li v-for="item in listaUsuarios"  >{{ item.nombre }}</li>
 </div>
+
+
 
 
         

@@ -1,17 +1,14 @@
-
 <script>
-
-import axios from "axios";
+import { userService } from "../Services/userService.js"
 
     export default {
    
-
         data() {
             return {
                 usuario:
-                    {
+                    {                      
+                        email:"",
                         nombre:"",
-                        mail:"",
                         pass:"",
                     },
                  vue:this,
@@ -20,19 +17,15 @@ import axios from "axios";
         methods: {
          
           registerUser(vue) {
-
-     axios.post('http://localhost:3001/register', this.usuario)
-    .then(response => {
-     
-      vue.$router.push("/");
-    })
-    .catch(error => {
-     
-      console.log(error);
-      
-      alert("Error mail ya ingresado")
-    });
-}
+                userService.register(this.usuario)
+                .then(response => {    
+                    vue.$router.push("/");
+                  })
+                .catch(error => {    
+                 console.log(error);     
+                 alert("Error mail ya ingresado")
+                 });
+          }
 
 
         }
@@ -58,15 +51,12 @@ import axios from "axios";
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
         <input
-          v-model="usuario.mail"
+          v-model="usuario.email"
           type="email"
           class="form-control"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
         />
-        <small id="emailHelp" class="form-text text-muted"
-          >We'll never share your email with anyone else.</small
-        >
     </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
