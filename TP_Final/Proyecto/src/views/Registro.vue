@@ -18,12 +18,13 @@ import { userService } from "../Services/userService.js"
          
           registerUser(vue) {
                 userService.register(this.usuario)
-                .then(response => {    
+                .then(response => {   
+                  console.log(response) 
                     vue.$router.push("/");
                   })
                 .catch(error => {    
                  console.log(error);     
-                 alert("Error mail ya ingresado")
+                 alert(`Error el mail ${this.usuario.email} ya  fue ingresado`)
                  });
           }
 

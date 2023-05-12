@@ -15,9 +15,9 @@ const registro = (email, nombre, pass) => {
    
    const login = async (email, pass) => {
      try {
-       const nombre = await usuarios.login(email, pass);
-       console.log(nombre);
-       return nombre;
+       const usuario = await usuarios.login(email, pass);
+       console.log(usuario);
+       return usuario;
      } catch (error) {
        console.log(error);
        throw new Error("Error en la autenticación");
@@ -34,11 +34,33 @@ const registro = (email, nombre, pass) => {
          throw new Error("Error al obtener los usuarios");
        });
    };
+
+
+
    
+   const editarUsuario = async (email, nombre) => {
+    try {
+      const usuario = await usuarios.editarUsuario(nombre,email)
+      console.log(usuario);
+      return usuario;
+    } catch (error) {
+      console.log(error);
+      throw new Error("Error en la Edicion");
+    }
+  };
+
+
+
+
+
+
+
+
    export default {
      registro,
      login,
-     obtenerUsuarios
+     obtenerUsuarios,
+     editarUsuario
    };
 
 

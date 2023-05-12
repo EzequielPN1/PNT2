@@ -8,5 +8,11 @@ const apiClient = axiosClient.getApiClient();
     },
     register(user) {
       return apiClient.post('/register', user);
+    },
+    editarUsuario(user){
+      return apiClient.post('/editarUsuario',user);
+    },
+    nombresUsuarios(){
+       return apiClient.get('/usuarios');
     }
   }

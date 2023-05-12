@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import axios from "axios";
+import { userService } from "../Services/userService.js"
 
 export const useUserStore = defineStore("user", {
   state: () => {
@@ -7,30 +7,29 @@ export const useUserStore = defineStore("user", {
       usuario: {
         email:"",
         nombre: "",
+        pass:"",
         token: "",
       },
       listaUsuarios:[],
     };
   },
   actions: {
-     changeName(name){
-       let usuario = {
-         nombre: name
-       }
-       let respuesta = axios.post("/editarUsuario", usuario)
-       .then(response => this.usuario.nombre = response.usuario)
-       .catch(err => alert("El nombre no pudo actualizarse: error ->"+err))
+     editarUsuario(usuario){
+      userService.editarUsuario(usuario)
+       .then(response => this.usuario = response.usuario)
+       .catch(err => alert("El usuario no pudo actualizarse: error ->"+err))
      },
 
      
-     async nombresUsuarios() {
-      try {
-        const respuesta = await axios.get('http://localhost:3001/usuarios'); 
-        this.listaUsuarios = respuesta.data; 
-      } catch (error) {
-        console.error(error);
-      }
-    },
+     nombresUsuarios() {
+      userService.nombresUsuarios()
+        .then(response => {
+          this.listaUsuarios = response.data;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
 
   },
  

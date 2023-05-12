@@ -26,7 +26,7 @@ export default{
     loguear: (user, vue) => {
       userService.login(user)
         .then(function (response) {
-          vue.usuario.nombre = response.data;
+          vue.usuario = response.data;
           vue.$router.push("/Home");       
         })
         .catch(function (error) {

@@ -1,15 +1,4 @@
-
-import sqlite3 from "sqlite3";
-
-// Crea una conexión a la base de datos
-  const db = new sqlite3.Database("./BD/BaseDatosCopy.db", (err) => {
-    if (err) {
-      console.error(err.message);
-    }
-    console.log("Conectado a la base de datos.");
-  });
-
-
+import  {db}  from './coneccionBD.js'
 
 
 
@@ -21,7 +10,6 @@ import sqlite3 from "sqlite3";
           console.log(err);
           reject("Error al registrar usuario");
         } else {
-          console.log(`Usuario registrado con id: ${this.lastID}`);
           resolve("Usuario registrado correctamente");
         }
       });
@@ -39,9 +27,7 @@ import sqlite3 from "sqlite3";
         } else if (!row) {
           reject("Credenciales inválidas");
         } else {
-          const nombre = row.nombre;
-          console.log(nombre);
-          resolve(nombre);
+          resolve(row);
         }
       });
     });
@@ -62,9 +48,33 @@ import sqlite3 from "sqlite3";
   };
 
 
+  
+  const editarUsuario = (email, nombre) => {
+    return new Promise((resolve, reject) => {
+      const sql = `UPDATE usuarios SET nombre = ? WHERE email = ?`;
+      db.run(sql, [nombre, email], function(err) {
+        if (err) {
+          console.log(err);
+          reject("Error en la autenticación");
+        } else {
+          db.get(`SELECT * FROM usuarios WHERE email = ?`, [email], (err, row) => {
+            if (err) {
+              console.log(err);
+              reject("Error en la autenticación");
+            } else {
+              resolve(row);
+            }
+          });
+        }
+      });
+    });
+  };
 
+
+  
 export default {
   registro,
   login,
-  obtenerUsuarios
+  obtenerUsuarios,
+  editarUsuario
 }

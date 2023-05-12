@@ -21,8 +21,8 @@ const login = (req, res) => {
   const pass = req.body.pass;
 
   usuarios.login(email, pass)
-    .then(nombre => {
-      res.status(200).json(nombre);
+    .then(usuario => {
+      res.status(200).json(usuario);
     })
     .catch(error => {
       console.log(error);
@@ -41,14 +41,26 @@ const obtenerUsuarios = (req, res) => {
     });
 };
 
-
+const editarUsuario = (req, res) => {
+  const email = req.body.email;
+  const nombre = req.body.nombre;
+  usuarios.editarUsuario(nombre,email)
+    .then((usuario) => {
+      res.status(200).json(usuario);
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500).send("Error al editar usuario");
+    });
+};
 
 
 
 export default {
   registro,
   login,
-  obtenerUsuarios
+  obtenerUsuarios,
+  editarUsuario 
 }
 
 
