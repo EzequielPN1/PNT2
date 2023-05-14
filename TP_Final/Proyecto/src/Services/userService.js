@@ -12,7 +12,4 @@ const apiClient = axiosClient.getApiClient();
     editarUsuario(user){
       return apiClient.post('/editarUsuario',user);
     },
-    nombresUsuarios(){
-       return apiClient.get('/usuarios');
-    }
   }

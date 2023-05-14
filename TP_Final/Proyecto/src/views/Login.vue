@@ -24,16 +24,29 @@ export default{
   },
   methods: {
     loguear: (user, vue) => {
-      userService.login(user)
-        .then(function (response) {
-          vue.usuario = response.data;
-          vue.$router.push("/Home");       
-        })
-        .catch(function (error) {
-          alert("Error de usuario y contraseña");
-          console.log(error);
-        });
-    },
+  userService.login(user)
+    .then(function (response) {
+      vue.usuario = response.data;
+      vue.$router.push("/Home");       
+    })
+    .catch(function (error) {
+      console.log(error);
+      if (error.response) {
+        // Si se recibió una respuesta del servidor con un código de estado
+        if (error.response.status === 404) {
+          alert("El correo no está registrado.");
+        } else if (error.response.status === 401) {
+          if (error.response.data === "Contraseña incorrecta.") {
+            alert("Contraseña incorrecta.");
+          } else {
+            alert("La cuenta no está confirmada.");
+          }         
+        } else {
+          alert("Error en la autenticación.");
+        }
+      } 
+    });
+},
   },
 };
 </script>

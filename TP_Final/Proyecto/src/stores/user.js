@@ -19,19 +19,9 @@ export const useUserStore = defineStore("user", {
        .then(response => this.usuario = response.usuario)
        .catch(err => alert("El usuario no pudo actualizarse: error ->"+err))
      },
-
-     
-     nombresUsuarios() {
-      userService.nombresUsuarios()
-        .then(response => {
-          this.listaUsuarios = response.data;
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    }
-
   },
+
+
  
 
 });

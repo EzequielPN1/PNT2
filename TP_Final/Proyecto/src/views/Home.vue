@@ -2,7 +2,7 @@
 import { storeToRefs } from "pinia";
 import { useUserStore } from "../stores/user";
 import { RouterLink } from "vue-router";
-import { onMounted } from 'vue'
+
 
 
 export default {
@@ -10,12 +10,9 @@ export default {
 
 const store = useUserStore();
 const { usuario } = storeToRefs(store);
-const {listaUsuarios} = storeToRefs(store);
-const { nombresUsuarios } = store;
-onMounted(() => {nombresUsuarios();});
 
         return{
-          usuario,listaUsuarios,
+          usuario,
         }
  },
        data() {
@@ -34,11 +31,6 @@ methods: {
 
 
 
-
-
-
-
-
 <template>
 
 <head>
@@ -50,7 +42,7 @@ methods: {
 
     <li><h2 v-if="usuario.nombre != ''" class="pr-4">{{ usuario.nombre }}</h2></li>
     <li> <RouterLink to="/EditarPerfil">Editar Perfil</RouterLink></li>
-    <li><a href="#" @click="verUsuarios = !verUsuarios">{{ verUsuarios ? 'Ocultar usuarios' : 'Mostrar usuarios' }}</a></li>
+    <li><a href="#">Opción 1</a></li>
     <li><a href="#">Opción 2</a></li>
     <li><a href="#">Opción 3</a></li>
     <RouterLink v-if="usuario.nombre != ''" to="/" class="nav-link btn btn-outline-danger" >Salir
@@ -61,15 +53,6 @@ methods: {
 </body>
 
 
-
-
-
-<div class="user-list" v-if="verUsuarios">
-  <a>Nombre de Usuarios</a>
-  <ul>
-    <li v-for="item in listaUsuarios" class="user-item">{{ item.nombre }}</li>
-  </ul>
-</div>
   
 </template>
 

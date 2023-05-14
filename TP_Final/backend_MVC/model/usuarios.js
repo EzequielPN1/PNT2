@@ -17,15 +17,15 @@ import  {db}  from './coneccionBD.js'
   };
 
 
-  const login = (email, pass) => {
+
+
+  const login = (email) => {
     return new Promise((resolve, reject) => {
-      const sql = `SELECT * FROM usuarios WHERE email = ? AND pass = ?`;
-      db.get(sql, [email, pass], (err, row) => {
+      const sql = `SELECT * FROM usuarios WHERE email = ?`;
+      db.get(sql, [email], (err, row) => {
         if (err) {
           console.log(err);
-          reject("Error en la autenticación");
-        } else if (!row) {
-          reject("Credenciales inválidas");
+          reject("Error mail no registrado");
         } else {
           resolve(row);
         }
@@ -34,21 +34,7 @@ import  {db}  from './coneccionBD.js'
   };
 
 
-  const obtenerUsuarios = () => {
-    return new Promise((resolve, reject) => {
-      db.all("SELECT * FROM usuarios", (err, rows) => {
-        if (err) {
-          console.error(err.message);
-          reject("Error en la base de datos");
-        } else {
-          resolve(rows);
-        }
-      });
-    });
-  };
 
-
-  
   const editarUsuario = (email, nombre) => {
     return new Promise((resolve, reject) => {
       const sql = `UPDATE usuarios SET nombre = ? WHERE email = ?`;
@@ -71,10 +57,29 @@ import  {db}  from './coneccionBD.js'
   };
 
 
+
+  const confirmarRegistro = (email) => {
+    return new Promise((resolve, reject) => {
+      const sql = `UPDATE usuarios SET registro = 1 WHERE email = ?`;
+      db.run(sql, [email], function(err) {
+        if (err) {
+          console.log(err);
+          reject("Error en la confirmación");
+        } else {
+          resolve();
+        }
+      });
+    });
+  };
+
+
+
+
+
   
 export default {
   registro,
   login,
-  obtenerUsuarios,
-  editarUsuario
+  editarUsuario,
+  confirmarRegistro
 }

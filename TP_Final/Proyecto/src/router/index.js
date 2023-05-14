@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 import Registro from '../views/Registro.vue'
 import EditarPerfil from '../views/EditarPerfil.vue'
 
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -33,12 +34,17 @@ const router = createRouter({
     {
       path: '/EditarPerfil',
       name: 'EditarPerfil',
-      component: EditarPerfil
+      component: EditarPerfil,
     },
  
 
 
   ]
-})
+});
+
+
+
+
+
 
 export default router

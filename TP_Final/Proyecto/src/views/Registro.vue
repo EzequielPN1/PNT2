@@ -47,7 +47,7 @@ import { userService } from "../Services/userService.js"
            
           class="form-control"
           id="exampleInputPassword1"
-        />
+          required/>
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
@@ -57,7 +57,7 @@ import { userService } from "../Services/userService.js"
           class="form-control"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
-        />
+          required/>
     </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
@@ -66,7 +66,7 @@ import { userService } from "../Services/userService.js"
           type="password"
           class="form-control"
           id="exampleInputPassword1"
-        />
+          required />
       </div>
       <div class="d-flex justify-content-between align-items-center">
    <button type="submit" class="btn btn-primary">Registrarse</button>

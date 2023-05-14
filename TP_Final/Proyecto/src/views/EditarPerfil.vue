@@ -14,11 +14,8 @@ export default {
   },
   data() {
     return {
-      
            nombre: '',
            vue:this,
-
-    
     };
   },
   methods: {
@@ -26,22 +23,23 @@ export default {
     guardarPerfil(nombre,vue) {
       const usuarioEditado = {
             nombre: nombre,
-            email: this.usuario.email      
+            email: this.usuario.email,
+            token: this.usuario.token      
               };
-
-              console.log(usuarioEditado)
-
+              console.log(usuarioEditado)          
                 userService.editarUsuario(usuarioEditado)
                 .then(response => {  
                     this.usuario = response.data;             
                     vue.$router.push("/Home");
                   })
                 .catch(error => {    
-                 console.log(error);     
-                 alert(`Error no se pudo editar el usuario`)
+                  if (error.response && error.response.status === 500) {
+                     alert("Error: El tiempo de la página ha expirado");
+                  } else {
+                     alert("Error: No se pudo editar el usuario. " + error.message);
+                  }
+                 vue.$router.push("/Login");
                  });
-     
-
     },
   },
 };
@@ -49,26 +47,22 @@ export default {
 
 
 
-
-
-
-
-
-
 <template>
- <div class="edit-profile">
-<div>
-    <h2>Editar Perfil</h2>
-    <form @submit.prevent="guardarPerfil(nombre, vue)">
-      <div>
-        <label>Nombre:</label>
-        <input type="text" v-model="nombre" >
-      </div>
-      <button type="submit">Guardar</button>
-    </form>
+  <div class="edit-profile">
+    <div>
+      <h2>Editar Perfil</h2>
+      <form @submit.prevent="guardarPerfil(nombre, vue)">
+        <div>
+          <label>Nombre:</label>
+          <input type="text" v-model="nombre" required>
+        </div>
+        <button type="submit">Guardar</button>
+      </form>
+    </div>
   </div>
-</div>
-  
+  <div class="back-button-container">
+    <RouterLink to="/Home"><button class="btn btn-secondary">Volver</button></RouterLink>
+  </div>
 </template>
 
 
@@ -134,4 +128,9 @@ export default {
     border: 1px solid #ccc;
     border-radius: 5px;
   }
+
+  .back-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
 </style>
