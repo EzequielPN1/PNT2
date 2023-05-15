@@ -22,6 +22,14 @@ const { usuario } = storeToRefs(store);
        };
 },
 methods: {
+  salir() {
+    this.usuario.nombre = '';
+    this.usuario.email = '';
+    this.usuario.pass = '';
+    this.usuario.token = '';
+    this.$router.push('/');
+  }
+
 
 }
 
@@ -39,14 +47,12 @@ methods: {
 </head>
 <body>
   <ul class="navbar">
-
     <li><h2 v-if="usuario.nombre != ''" class="pr-4">{{ usuario.nombre }}</h2></li>
     <li> <RouterLink to="/EditarPerfil">Editar Perfil</RouterLink></li>
     <li><a href="#">Opción 1</a></li>
     <li><a href="#">Opción 2</a></li>
     <li><a href="#">Opción 3</a></li>
-    <RouterLink v-if="usuario.nombre != ''" to="/" class="nav-link btn btn-outline-danger" >Salir
-    </RouterLink>
+    <button v-if="usuario.nombre !== ''" @click="salir" class="nav-link btn btn-outline-danger">Salir</button>
   </ul>
 
 
