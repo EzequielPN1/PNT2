@@ -8,6 +8,9 @@ router.post("/register",usuarios.registro)
 router.post("/login", usuarios.login)
 router.post("/editarUsuario",usuarios.editarUsuario)
 router.get("/confirmar",usuarios.confirmar)
+router.post("/enviarCorreoNuevaPass",usuarios.enviarCorreoNuevaPass)
+router.post("/cambiarContrasenia",usuarios.cambiarContrasenia)
+
 
 
 export {

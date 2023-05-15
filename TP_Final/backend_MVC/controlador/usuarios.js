@@ -62,7 +62,6 @@ const login = (req, res) => {
 
 
 
-
 const editarUsuario = (req, res) => {
   const email = req.body.email;
   const nombre = req.body.nombre;
@@ -116,8 +115,21 @@ const confirmar = (req,res) => {
 
 }
 
+const enviarCorreoNuevaPass = (req,res) => {
+  const email = req.body.email;
+  console.log(email)
+  mailer.enviarCorreoCambioPass(email)
+  res.status(200).json();
+}
 
+const cambiarContrasenia = (req,res) => {
+  const email = req.body.email;
+  const nuevaPass = req.body.newPassword;
 
+  usuarios.cambiarContrasenia(email,nuevaPass)
+  res.status(200).json();
+  
+}
 
 
 
@@ -126,7 +138,9 @@ export default {
   registro,
   login,
   editarUsuario,
-  confirmar
+  confirmar,
+  enviarCorreoNuevaPass,
+  cambiarContrasenia
 }
 
 

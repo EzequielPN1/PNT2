@@ -75,6 +75,7 @@ export default{
     </div  >
     <div class="d-flex justify-content-between align-items-center">
     <button type="submit" class="btn btn-primary" >Entrar</button>
+    <RouterLink to="/GenerarPass"><button class="btn btn-secondary" >olvido su pass</button></RouterLink>
     <RouterLink to="/"><button class="btn btn-secondary" >Volver</button></RouterLink>
   </div>
   </form>

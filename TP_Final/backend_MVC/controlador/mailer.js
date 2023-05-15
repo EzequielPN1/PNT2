@@ -34,6 +34,28 @@ function enviarCorreoConfirmacion(token,email) {
   });
 }
 
+function enviarCorreoCambioPass(email) {
+  const mensaje = {
+    from: 'ventaDeTicketsPN1@gmail.com',
+    to: 'ventaDeTicketsPN1@gmail.com',
+    subject: 'Cambio de Pass',
+    html: `
+      <p>Para cambiar tu contraseña, haz clic en el siguiente enlace:</p>
+      <a href="http://localhost:5173/cambioDePass?email=${encodeURIComponent(email)}">Cambiar contraseña</a>
+    `,
+  };
+
+  transporter.sendMail(mensaje, (error, info) => {
+    if (error) {
+      console.log('Error al enviar el correo electrónico:', error);
+    } else {
+      console.log('Correo electrónico enviado:', info.response);
+    }
+  });
+}
+
+
 export default{
-    enviarCorreoConfirmacion
+    enviarCorreoConfirmacion,
+    enviarCorreoCambioPass
 }

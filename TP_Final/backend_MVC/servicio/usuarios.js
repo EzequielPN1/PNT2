@@ -68,7 +68,20 @@ const confirmarRegistro = async (email) => {
   }
 }
 
+const cambiarContrasenia = async (email,nuevaPass) => {
+  try {
+    const salt = await bcrypt.genSalt(10); // generamos el salt de forma asincrónica
+    const hash = await bcrypt.hash(nuevaPass, salt); // generamos el hash de forma asincrónica
 
+   await usuarios.cambiarContrasenia(email,hash)
+    
+  } catch (error) {
+    console.log(error);
+   
+  }
+    
+
+}
 
 
 
@@ -77,7 +90,8 @@ const confirmarRegistro = async (email) => {
      registro,
      login,
      editarUsuario,
-     confirmarRegistro
+     confirmarRegistro,
+     cambiarContrasenia
    };
 
 

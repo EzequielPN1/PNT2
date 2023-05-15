@@ -72,7 +72,19 @@ import  {db}  from './coneccionBD.js'
     });
   };
 
-
+  const cambiarContrasenia = (email, nuevaPass) => {
+    return new Promise((resolve, reject) => {
+      const sql = 'UPDATE usuarios SET pass = ? WHERE email = ?';
+      db.run(sql, [nuevaPass, email], function(err) {
+        if (err) {
+          console.log(err);
+          reject("Error en la confirmación");
+        } else {
+          resolve();
+        }
+      });
+    });
+  };
 
 
 
@@ -81,5 +93,6 @@ export default {
   registro,
   login,
   editarUsuario,
-  confirmarRegistro
+  confirmarRegistro,
+  cambiarContrasenia
 }
