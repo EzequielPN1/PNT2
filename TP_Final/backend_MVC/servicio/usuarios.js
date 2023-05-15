@@ -60,28 +60,26 @@ const login = async (email, pass) => {
 const confirmarRegistro = async (email) => {
   try {
     await usuarios.confirmarRegistro(email)
-    console.log('Registro confirmado correctamente');
-    
+    console.log('Registro confirmado correctamente');   
   } catch (error) {
     console.log(error);
-   
+    throw new Error("Error al confirmar el registro");
   }
 }
 
-const cambiarContrasenia = async (email,nuevaPass) => {
+const cambiarContrasenia = async (email, nuevaPass) => {
   try {
-    const salt = await bcrypt.genSalt(10); // generamos el salt de forma asincrónica
-    const hash = await bcrypt.hash(nuevaPass, salt); // generamos el hash de forma asincrónica
-
-   await usuarios.cambiarContrasenia(email,hash)
-    
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(nuevaPass, salt);
+    await usuarios.cambiarContrasenia(email, hash);
   } catch (error) {
-    console.log(error);
-   
+    if (error === "El correo electrónico no está registrado") {
+      throw new Error("Error email no registrado");
+    } else {
+      throw new Error("Error al cambiar la contraseñia");
+    }
   }
-    
-
-}
+};
 
 
 

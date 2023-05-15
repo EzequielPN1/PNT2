@@ -10,7 +10,7 @@ export const useUserStore = defineStore("user", {
         pass:"",
         token: "",
       },
-      listaUsuarios:[],
+  
     };
   },
   actions: {

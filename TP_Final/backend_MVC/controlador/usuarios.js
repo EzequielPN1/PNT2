@@ -122,14 +122,27 @@ const enviarCorreoNuevaPass = (req,res) => {
   res.status(200).json();
 }
 
-const cambiarContrasenia = (req,res) => {
+
+
+
+const cambiarContrasenia = (req, res) => {
   const email = req.body.email;
   const nuevaPass = req.body.newPassword;
 
-  usuarios.cambiarContrasenia(email,nuevaPass)
-  res.status(200).json();
-  
-}
+  usuarios.cambiarContrasenia(email, nuevaPass)
+    .then(() => {
+      res.status(200).json();
+    })
+    .catch((error) => {
+      console.log(error.message)
+      if (error.message === "Error email no registrado") {
+        res.status(404).send("El correo no está registrado.");
+      } else {
+        console.log(error); 
+        res.status(500).send("Ocurrió un error en el servidor.");
+      }
+    });
+};
 
 
 

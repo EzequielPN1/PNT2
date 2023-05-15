@@ -19,24 +19,21 @@ methods: {
   },
 
   cambiarContrasenia(vue) {
-
-      // alert(this.nuevaContrasenia + ' ' +  this.email)
-
-       userService.cambiarContrasenia(this.email, this.nuevaContrasenia)
-      .then(response => {
-        // La contraseña se cambió correctamente, maneja la respuesta según tus necesidades
-        console.log(response);
-        alert('Contraseña cambiada exitosamente');
-        vue.$router.push("/Login");  
-
-      })
-      .catch(error => {
-        // Ocurrió un error al cambiar la contraseña, maneja el error según tus necesidades
-        console.error(error);
+  userService.cambiarContrasenia(this.email, this.nuevaContrasenia)
+    .then(response => {
+      console.log(response);
+      alert('Contraseña cambiada exitosamente');
+      vue.$router.push("/Login");
+    })
+    .catch(error => {
+      console.error(error);
+      if (error.response.status === 404) {
+        alert('El correo no está registrado.');
+      } else {
         alert('Error al cambiar la contraseña');
-      });
-      
-  }
+      }
+    });
+}
 
     }
   };

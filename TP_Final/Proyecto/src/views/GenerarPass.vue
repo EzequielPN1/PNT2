@@ -28,7 +28,7 @@ export default {
 <template>
     <div>
       <form @submit.prevent="enviarCorreoNuevaPass(vue)">
-        <label for="email">Correo electrónico:</label>
+        <label for="email">Ingrese su correo electrónico para reestablecer su Contreaseña:</label>
         <input 
         type="email" 
         v-model="email"     

@@ -57,7 +57,6 @@ import  {db}  from './coneccionBD.js'
   };
 
 
-
   const confirmarRegistro = (email) => {
     return new Promise((resolve, reject) => {
       const sql = `UPDATE usuarios SET registro = 1 WHERE email = ?`;
@@ -72,20 +71,28 @@ import  {db}  from './coneccionBD.js'
     });
   };
 
+
+
   const cambiarContrasenia = (email, nuevaPass) => {
     return new Promise((resolve, reject) => {
-      const sql = 'UPDATE usuarios SET pass = ? WHERE email = ?';
-      db.run(sql, [nuevaPass, email], function(err) {
-        if (err) {
-          console.log(err);
-          reject("Error en la confirmación");
+      const checkEmailSQL = 'SELECT COUNT(*) as count FROM usuarios WHERE email = ?';
+      db.get(checkEmailSQL, [email], (err, row) => {
+        if (row.count === 0) {
+          reject("El correo electrónico no está registrado");
         } else {
-          resolve();
+          const updatePasswordSQL = 'UPDATE usuarios SET pass = ? WHERE email = ?';
+          db.run(updatePasswordSQL, [nuevaPass, email], function(err) {
+            if (err) {
+              console.log(err);
+              reject("Error en el cambio de contraseña");
+            } else {
+              resolve();
+            }
+          });
         }
       });
     });
   };
-
 
 
   
